@@ -1,0 +1,67 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+
+        <!-- CONTENT GOES HERE -->
+        <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+            <div class="demo-button-container">
+                <button mat-raised-button routerLink="/registrar" class="demo-button">
+                  Nuevo
+                </button>
+                
+              </div>
+              <mat-form-field>
+                <mat-label>Filtro</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
+              <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #tabla1>
+                  <ng-container matColumnDef="razonSocial">
+                    <th mat-header-cell *matHeaderCellDef> Razon social </th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.cliente_razon_social}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="identidad">
+                    <th mat-header-cell *matHeaderCellDef> Documento de identificacion </th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.persona_nro_identificacion}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="nombre">
+                    <th mat-header-cell *matHeaderCellDef> Nombres </th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.persona_nombres}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="apellido">
+                    <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.persona_apellidos}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="fechaNaciento">
+                    <th mat-header-cell *matHeaderCellDef> Fecha nacimiento</th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.persona_fecha_nacimiento}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="genero">
+                    <th mat-header-cell *matHeaderCellDef> Genero </th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.genero.genero_nombre}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="estadoCivil">
+                    <th mat-header-cell *matHeaderCellDef> Estado civil </th>
+                    <td mat-cell *matCellDef="let cliente"> {{cliente.genero.estado_nombre}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="editar">
+                    <th mat-header-cell *matHeaderCellDef> Editar? </th>
+                    <td mat-cell *matCellDef="let j = index;">
+                      <button mat-raised-button color="warn" focusable="false" (click)="editar(j)">
+                        Editar?
+                      </button>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                  <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+              </div>
+        </div>
+
+
+    </div>
+
+</div>
